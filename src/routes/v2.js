@@ -6,7 +6,6 @@ const router = express.Router();
 const dataModules = require('../models');
 
 const acl = require('../middleware/auth/acl');
-const basicAuth = require('../middleware/auth/basic');
 const bearerAuth = require('../middleware/auth/bearer');
 
 router.param('model', (req, res, next) => {
@@ -19,11 +18,11 @@ router.param('model', (req, res, next) => {
   }
 });
 
-router.get('/:model', acl('read'), basicAuth, handleGetAll);
-router.get('/:model/:id', acl('read'), basicAuth, handleGetOne);
-router.post('/:model', acl('create'), bearerAuth, handleCreate);
-router.put('/:model/:id', acl('update'), bearerAuth, handleUpdate);
-router.delete('/:model/:id', acl('delete'), bearerAuth, handleDelete);
+router.get('/:model', bearerAuth, acl('read'), handleGetAll);
+router.get('/:model/:id', bearerAuth, acl('read'), handleGetOne);
+router.post('/:model', bearerAuth, acl('create'), handleCreate);
+router.put('/:model/:id', bearerAuth, acl('update'), handleUpdate);
+router.delete('/:model/:id', bearerAuth, acl('delete'), handleDelete);
 
 async function handleGetAll(req, res) {
   let allRecords = await req.model.get();
@@ -52,7 +51,7 @@ async function handleUpdate(req, res) {
 async function handleDelete(req, res) {
   let id = req.params.id;
   let deletedRecord = await req.model.delete(id);
-  res.status(200).json(deletedRecord);
+  res.status(200).json({});
 }
 
 module.exports = router;
