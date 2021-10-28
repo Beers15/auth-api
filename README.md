@@ -90,15 +90,6 @@
     * same as v1 but requires authentication
     * requires update capability
 
-* REST Method PATCH
-  * Path: /api/v1/:model/:id
-    * updates a specified resource from the supplied model
-    * returns the updated resource
-
-  * Path: /api/v2/:model/:id
-    * same as v1 but requires authentication
-    * requires update capability
-
 * REST Method DELETE
   * Path: /api/v1/:model/:id
     * deletes a specified resource from the supplied model
