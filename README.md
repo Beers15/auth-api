@@ -32,7 +32,7 @@
 
 ## Links to application deployment
 
-  App deployed on Heroku [here]()
+  App deployed on Heroku [here](https://auth-api-class08.herokuapp.com/)
 
   Pull req from dev found [here](https://github.com/Beers15/auth-api/pull/1)
 
